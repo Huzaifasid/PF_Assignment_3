@@ -6,12 +6,14 @@ float addition(float a, float b);
 float subtraction(float a, float b);
 float multiplication(float a, float b);
 float division(float a, float b);
+
 float sine(float angle);
 float cosine(float angle);
 float tangent(float angle);
 float arcsine(float value);
 float arccosine(float value);
 float arctangent(float value);
+
 float exponentiation(float base, float exponent);
 float squareRoot(float value);
 float cubeRoot(float value);
@@ -19,12 +21,16 @@ float nthRoot(float value, int n);
 int factorial(int n);
 float absoluteValue(float value);
 
+float logarithm(float base, float value);
+float naturalLogarithm(float value);
+float logWithBase(float base, float value);
 
-int main() {
+int main()
+{
 
     float a, b;
     char operation;
-    
+
     printf("===============================\n");
     printf("|    Scientific Calculator    |\n");
     printf("===============================\n");
@@ -52,20 +58,26 @@ int main() {
     printf("Enter f for Factorial\n");
     printf("Enter v for Absolute Value\n");
 
+    printf("Enter l for Logarithm\n");
+    printf("Enter i for Natural Logarithm\n");
+    printf("Enter b for Custom Base Logarithm\n");
+
     operation = getche();
 
     if (operation != 's' && operation != 'c' && operation != 't' && operation != 'a' &&
         operation != 'o' && operation != 'n' && operation != 'A' && operation != 'O' &&
         operation != 'N' && operation != 'r' && operation != 'u' && operation != 'f' &&
         operation != 'v' && operation != 'e' && operation != 'R' && operation != 'U' &&
-        operation != 'F' && operation != 'V' && operation != 'E') {
+        operation != 'F' && operation != 'V' && operation != 'E' && operation != 'l' &&
+        operation != 'i' && operation != 'L' && operation != 'I')
+    {
 
         printf("\nEnter second number: ");
         scanf("%f", &b);
     }
 
-
-    switch (operation) {
+    switch (operation)
+    {
     // Arithmetic Operations
     case '+':
         printf("\nResult: %f\n", addition(a, b));
@@ -132,7 +144,20 @@ int main() {
         printf("Result: %f\n", nthRoot(a, b));
         break;
 
-  
+    // Logarithmic Operations
+    case 'l':
+    case 'L':
+        printf("Result: %f\n", logarithm(a, b));
+        break;
+    case 'i':
+    case 'I':
+        printf("Result: %f\n", naturalLogarithm(a));
+        break;
+    case 'b':
+    case 'B':
+        printf("Result: %f\n", logWithBase(a, b));
+        break;
+
     default:
         printf("\nError: Invalid operator\n");
         break;
@@ -143,25 +168,32 @@ int main() {
 
 // Arithmetic Operations Calculations
 // Addition Calculation
-float addition(float a, float b) {
+float addition(float a, float b)
+{
     return a + b;
 }
 
 // Subtraction Calculation
-float subtraction(float a, float b) {
+float subtraction(float a, float b)
+{
     return a - b;
 }
 
 // Multiplication Calculation
-float multiplication(float a, float b) {
+float multiplication(float a, float b)
+{
     return a * b;
 }
 
 // Division Calculation
-float division(float a, float b) {
-    if (b != 0) {
+float division(float a, float b)
+{
+    if (b != 0)
+    {
         return a / b;
-    } else {
+    }
+    else
+    {
         printf("Error: Division by zero\n");
         return 0;
     }
@@ -169,79 +201,127 @@ float division(float a, float b) {
 
 // Trigonometric Calculations
 // Sine Calculation
-float sine(float angle) {
+float sine(float angle)
+{
     return sin(angle);
 }
 
 // Cosine Calculation
-float cosine(float angle) {
+float cosine(float angle)
+{
     return cos(angle);
 }
 
 // Tangent Calculation
-float tangent(float angle) {
+float tangent(float angle)
+{
     return tan(angle);
 }
 
 // Arcsine Calculation
-float arcsine(float value) {
+float arcsine(float value)
+{
     return asin(value);
 }
 
 // Arccosine Calculation
-float arccosine(float value) {
+float arccosine(float value)
+{
     return acos(value);
 }
 
 // Arctangent Calculation
-float arctangent(float value) {
+float arctangent(float value)
+{
     return atan(value);
 }
 
 // Exponential Calculation
-float exponentiation(float base, float exponent) {
+float exponentiation(float base, float exponent)
+{
     return pow(base, exponent);
 }
 
 // Square Root Calculation
-float squareRoot(float value) {
-    if (value >= 0) {
+float squareRoot(float value)
+{
+    if (value >= 0)
+    {
         return sqrt(value);
-    } else {
+    }
+    else
+    {
         printf("Error: Cannot calculate square root of a negative number\n");
         return 0;
     }
 }
 
 // Cube Root Calculation
-float cubeRoot(float value) {
+float cubeRoot(float value)
+{
     return cbrt(value);
 }
 
 // Nth Root Calculation
-float nthRoot(float value, int n) {
-    if (value >= 0 || n % 2 != 0) {
+float nthRoot(float value, int n)
+{
+    if (value >= 0 || n % 2 != 0)
+    {
         return pow(value, 1.0 / n);
-    } else {
+    }
+    else
+    {
         printf("Error: Cannot calculate even root of a negative number\n");
         return 0;
     }
 }
 
 // Factorial Calculation
-int factorial(int n) {
-    if (n < 0) {
+int factorial(int n)
+{
+    if (n < 0)
+    {
         printf("Error: Cannot calculate factorial of a negative number\n");
         return 0;
-    } else if (n == 0) {
+    }
+    else if (n == 0)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return n * factorial(n - 1);
     }
 }
 
 // Absolute Value Calculation
-float absoluteValue(float value) {
+float absoluteValue(float value)
+{
     return fabs(value);
 }
 
+// Logarithm Calculation
+float logarithm(float base, float value)
+{
+    return log10(value) / log10(base);
+}
+
+// Natural Logarithm calculation
+float naturalLogarithm(float value)
+{
+    if (value > 0)
+    {
+        return log(value);
+    }
+    else
+    {
+        printf("Error: Cannot calculate natural logarithm of a non-positive number\n");
+        return 0;
+    }
+}
+
+// Custom base logarithm calculation
+float logWithBase(float base, float value)
+{
+    return log(value) / log(base);
+}
