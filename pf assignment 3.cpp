@@ -6,29 +6,31 @@ float addition(float a, float b);
 float subtraction(float a, float b);
 float multiplication(float a, float b);
 float division(float a, float b);
-
-
 float sine(float angle);
 float cosine(float angle);
 float tangent(float angle);
 float arcsine(float value);
 float arccosine(float value);
 float arctangent(float value);
+float exponentiation(float base, float exponent);
+float squareRoot(float value);
+float cubeRoot(float value);
+float nthRoot(float value, int n);
+int factorial(int n);
+float absoluteValue(float value);
+
 
 int main() {
 
     float a, b;
     char operation;
-
-
+    
     printf("===============================\n");
     printf("|    Scientific Calculator    |\n");
     printf("===============================\n");
 
-
     printf("Enter first number: ");
     scanf("%f", &a);
-
 
     printf("Please Select an operator: \n");
     printf("Enter + for Addition\n");
@@ -43,11 +45,20 @@ int main() {
     printf("Enter o for Arccosine\n");
     printf("Enter n for Artangent\n");
 
+    printf("Enter e for Exponential\n");
+    printf("Enter r for Square root\n");
+    printf("Enter u for Cuberoot\n");
+    printf("Enter g for nth root\n");
+    printf("Enter f for Factorial\n");
+    printf("Enter v for Absolute Value\n");
+
     operation = getche();
 
     if (operation != 's' && operation != 'c' && operation != 't' && operation != 'a' &&
         operation != 'o' && operation != 'n' && operation != 'A' && operation != 'O' &&
-        operation != 'N') {
+        operation != 'N' && operation != 'r' && operation != 'u' && operation != 'f' &&
+        operation != 'v' && operation != 'e' && operation != 'R' && operation != 'U' &&
+        operation != 'F' && operation != 'V' && operation != 'E') {
 
         printf("\nEnter second number: ");
         scanf("%f", &b);
@@ -55,7 +66,7 @@ int main() {
 
 
     switch (operation) {
-
+    // Arithmetic Operations
     case '+':
         printf("\nResult: %f\n", addition(a, b));
         break;
@@ -69,6 +80,7 @@ int main() {
         printf("\nResult: %f\n", division(a, b));
         break;
 
+    // Trigonometric Operations
     case 's':
     case 'S':
         printf("\nResult: %f\n", sine(a));
@@ -94,6 +106,33 @@ int main() {
         printf("\nResult: %f\n", arctangent(a));
         break;
 
+    // Algebraic Operations
+    case 'e':
+    case 'E':
+        printf("Result: %f\n", exponentiation(a, b));
+        break;
+    case 'r':
+    case 'R':
+        printf("Result: %f\n", squareRoot(a));
+        break;
+    case 'u':
+    case 'U':
+        printf("Result: %f\n", cubeRoot(a));
+        break;
+    case 'f':
+    case 'F':
+        printf("Result: %d\n", factorial((int)a));
+        break;
+    case 'v':
+    case 'V':
+        printf("Result: %f\n", absoluteValue(a));
+        break;
+    case 'g':
+    case 'G':
+        printf("Result: %f\n", nthRoot(a, b));
+        break;
+
+  
     default:
         printf("\nError: Invalid operator\n");
         break;
@@ -101,7 +140,6 @@ int main() {
 
     return 0;
 }
-
 
 // Arithmetic Operations Calculations
 // Addition Calculation
@@ -158,5 +196,52 @@ float arccosine(float value) {
 // Arctangent Calculation
 float arctangent(float value) {
     return atan(value);
+}
+
+// Exponential Calculation
+float exponentiation(float base, float exponent) {
+    return pow(base, exponent);
+}
+
+// Square Root Calculation
+float squareRoot(float value) {
+    if (value >= 0) {
+        return sqrt(value);
+    } else {
+        printf("Error: Cannot calculate square root of a negative number\n");
+        return 0;
+    }
+}
+
+// Cube Root Calculation
+float cubeRoot(float value) {
+    return cbrt(value);
+}
+
+// Nth Root Calculation
+float nthRoot(float value, int n) {
+    if (value >= 0 || n % 2 != 0) {
+        return pow(value, 1.0 / n);
+    } else {
+        printf("Error: Cannot calculate even root of a negative number\n");
+        return 0;
+    }
+}
+
+// Factorial Calculation
+int factorial(int n) {
+    if (n < 0) {
+        printf("Error: Cannot calculate factorial of a negative number\n");
+        return 0;
+    } else if (n == 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+// Absolute Value Calculation
+float absoluteValue(float value) {
+    return fabs(value);
 }
 
